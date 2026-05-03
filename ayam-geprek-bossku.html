@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayam Geprek Bossku – Bossnya Ayam Geprek Kendari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #CC0000;
+    --red-dark: #8B0000;
+    --orange: #E02020;
+    --yellow: #FF6666;
+    --cream: #FFF0F0;
+    --dark: #1A0000;
+    --brown: #3D0000;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(100,0,0,0.95);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 40px;
+    border-bottom: 2px solid var(--orange);
+  }
+  .logo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    color: #FF8888;
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+  .logo span { color: #FF4444; }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul a {
+    color: var(--white); text-decoration: none;
+    font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 1px; text-transform: uppercase;
+    transition: color .2s;
+  }
+  nav ul a:hover { color: var(--yellow); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1A0000 0%, #5C0000 40%, #8B0000 100%);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    padding-top: 70px;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 20% 80%, rgba(200,0,0,0.25) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(140,0,0,0.3) 0%, transparent 50%);
+  }
+  .flame {
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(ellipse at center, rgba(220,0,0,0.35) 0%, rgba(140,0,0,0.15) 50%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  .flame-1 { top: 10%; left: 5%; }
+  .flame-2 { bottom: 10%; right: 5%; animation-delay: 1.5s; }
+  @keyframes pulse { 0%,100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.2); opacity: 1; } }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; padding: 0 20px;
+    animation: fadeUp .8s ease both;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 0.75rem; font-weight: 800;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 6px 20px; border-radius: 40px;
+    margin-bottom: 20px;
+    animation: fadeUp .8s .1s ease both;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(4rem, 10vw, 9rem);
+    line-height: 1;
+    color: var(--white);
+    letter-spacing: 1px;
+    animation: fadeUp .8s .2s ease both;
+  }
+  .hero h1 .highlight {
+    color: var(--yellow);
+    -webkit-text-stroke: 2px var(--orange);
+    display: block;
+  }
+  .hero-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(255,255,255,0.8);
+    margin: 20px 0 36px;
+    font-weight: 600;
+    animation: fadeUp .8s .3s ease both;
+  }
+  .hero-tagline strong { color: #FF8888; }
+
+  .hero-cta {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp .8s .4s ease both;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--red), var(--orange));
+    color: var(--white);
+    padding: 14px 36px; border-radius: 50px;
+    font-weight: 800; font-size: 1rem;
+    text-decoration: none; letter-spacing: 1px;
+    box-shadow: 0 8px 30px rgba(214,43,43,0.5);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(214,43,43,0.6); }
+  .btn-outline {
+    border: 2px solid var(--yellow);
+    color: var(--yellow);
+    padding: 14px 36px; border-radius: 50px;
+    font-weight: 800; font-size: 1rem;
+    text-decoration: none; letter-spacing: 1px;
+    transition: background .2s, color .2s;
+  }
+  .btn-outline:hover { background: var(--yellow); color: var(--dark); }
+
+  .hero-stats {
+    display: flex; gap: 40px; justify-content: center;
+    margin-top: 60px; flex-wrap: wrap;
+    animation: fadeUp .8s .5s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3rem; color: #FF8888;
+    line-height: 1;
+  }
+  .stat-label { color: rgba(255,255,255,0.7); font-size: 0.85rem; font-weight: 600; }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
+  .section-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 3px;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .section-title span { color: var(--red); }
+  .section-sub {
+    text-align: center; color: #7A0000;
+    font-size: 1rem; font-weight: 600; margin-bottom: 50px;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* ─── MENU SECTION ─── */
+  #menu { background: var(--white); padding: 80px 0; max-width: 100%; }
+  #menu > * { max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 40px; }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+    max-width: 1200px; margin: 0 auto; padding: 0 40px;
+  }
+
+  .menu-card {
+    background: var(--cream);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    transition: transform .3s, box-shadow .3s;
+    border: 2px solid transparent;
+  }
+  .menu-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(214,43,43,0.15);
+    border-color: var(--orange);
+  }
+  .menu-emoji {
+    font-size: 5rem;
+    background: linear-gradient(135deg, #5C0000, #8B0000);
+    display: flex; align-items: center; justify-content: center;
+    height: 160px;
+    position: relative;
+  }
+  .menu-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--red); color: var(--white);
+    font-size: 0.7rem; font-weight: 800;
+    padding: 4px 10px; border-radius: 20px;
+    letter-spacing: 1px;
+  }
+  .menu-body { padding: 20px; }
+  .menu-name {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem; letter-spacing: 2px; color: var(--brown);
+  }
+  .menu-desc { font-size: 0.85rem; color: #7A0000; margin: 6px 0 14px; line-height: 1.5; }
+  .menu-price {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem; color: var(--red);
+    letter-spacing: 1px;
+  }
+  .menu-price span { font-family: 'Nunito', sans-serif; font-size: 1rem; color: #7A5C2E; }
+
+  /* ─── SPICY LEVEL ─── */
+  .spicy-bar { display: flex; gap: 4px; margin-top: 8px; }
+  .chili { font-size: 1rem; }
+  .chili.off { filter: grayscale(1) opacity(0.3); }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: linear-gradient(135deg, #1A0000, #5C0000);
+    max-width: 100%; padding: 80px 40px;
+  }
+  #about .section-title { color: var(--white); }
+  #about .section-sub { color: rgba(255,150,150,0.8); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    max-width: 1200px; margin: 0 auto; align-items: center;
+  }
+  .about-text { color: rgba(255,255,255,0.85); }
+  .about-text h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.5rem; color: #FF8888;
+    letter-spacing: 2px; margin-bottom: 16px;
+  }
+  .about-text p { line-height: 1.8; margin-bottom: 16px; }
+  .about-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .about-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(220,0,0,0.3);
+    border-radius: 16px; padding: 24px;
+    text-align: center;
+  }
+  .about-card .icon { font-size: 2.5rem; margin-bottom: 10px; }
+  .about-card h4 { color: #FF8888; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+  .about-card p { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 6px; }
+
+  /* ─── OUTLETS ─── */
+  .outlets-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;
+  }
+  .outlet-card {
+    background: var(--white);
+    border-radius: 16px; padding: 24px;
+    border-left: 4px solid var(--orange);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    transition: transform .2s;
+  }
+  .outlet-card:hover { transform: translateX(4px); }
+  .outlet-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem; color: var(--orange); opacity: 0.4;
+    line-height: 1;
+  }
+  .outlet-name { font-weight: 800; color: #8B0000; font-size: 1.05rem; margin-bottom: 4px; }
+  .outlet-info { font-size: 0.82rem; color: #7A0000; display: flex; align-items: center; gap: 6px; }
+
+  /* ─── ORDER ─── */
+  #order {
+    background: linear-gradient(135deg, #8B0000, #CC0000, #E02020);
+    max-width: 100%; text-align: center; padding: 80px 40px;
+  }
+  #order .section-title { color: var(--white); }
+  #order .section-sub { color: rgba(255,255,255,0.8); }
+  .order-apps {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 10px;
+  }
+  .app-btn {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(0,0,0,0.25);
+    border: 2px solid rgba(255,255,255,0.3);
+    color: var(--white); text-decoration: none;
+    padding: 14px 28px; border-radius: 50px;
+    font-weight: 700; font-size: 1rem;
+    transition: background .2s, transform .2s;
+  }
+  .app-btn:hover { background: rgba(0,0,0,0.4); transform: scale(1.04); }
+  .app-btn .app-icon { font-size: 1.5rem; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 0.85rem;
+  }
+  footer strong { color: #FF8888; }
+  footer a { color: #FF6666; text-decoration: none; }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s, transform .7s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media(max-width:768px) {
+    nav ul { display: none; }
+    nav { padding: 14px 20px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    section { padding: 60px 20px; }
+    #menu, #about, #order { padding: 60px 20px; }
+    .menu-grid { padding: 0 20px; }
+    #menu > * { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="logo">Ayam Geprek <span>Bossku</span></a>
+  <ul>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">Tentang Kami</a></li>
+    <li><a href="#outlets">Outlet</a></li>
+    <li><a href="#order">Pesan</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="flame flame-1"></div>
+  <div class="flame flame-2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🔥 Bossnya Ayam Geprek – Kendari</div>
+    <h1>AYAM<br><span class="highlight">GEPREK BOSSKU</span></h1>
+    <p class="hero-tagline">Geprek-an paling <strong>nendang</strong> di Kota Kendari.<br>Harga bersahabat, rasa bikin ketagihan!</p>
+    <div class="hero-cta">
+      <a href="#menu" class="btn-primary">🍗 Lihat Menu</a>
+      <a href="#order" class="btn-outline">📱 Pesan Sekarang</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Outlet di Kendari</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24</div>
+        <div class="stat-label">Jam Buka</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Rp15k</div>
+        <div class="stat-label">Harga Mulai Dari</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">🌶️10</div>
+        <div class="stat-label">Level Kepedasan</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MENU -->
+<div id="menu">
+  <div>
+    <h2 class="section-title reveal">MENU <span>ANDALAN</span></h2>
+    <p class="section-sub reveal">Pilih geprek favoritmu – dari yang ringan sampai yang bikin nangis bahagia 🌶️</p>
+  </div>
+  <div class="menu-grid">
+
+    <div class="menu-card reveal">
+      <div class="menu-emoji">
+        🍗
+        <div class="menu-badge">⭐ BEST SELLER</div>
+      </div>
+      <div class="menu-body">
+        <div class="menu-name">Ayam Geprek</div>
+        <div class="menu-desc">Ayam goreng crispy digeprek dengan sambal bawang super pedas. Porsi standar ditimbang, dijamin ga dikurangi!</div>
+        <div class="spicy-bar">
+          <span class="chili">🌶️</span><span class="chili">🌶️</span><span class="chili">🌶️</span>
+          <span class="chili off">🌶️</span><span class="chili off">🌶️</span>
+        </div>
+        <div class="menu-price">Rp 15.000 <span>/ porsi</span></div>
+      </div>
+    </div>
+
+    <div class="menu-card reveal">
+      <div class="menu-emoji">🦐</div>
+      <div class="menu-body">
+        <div class="menu-name">Udang Geprek</div>
+        <div class="menu-desc">Udang segar digoreng crispy lalu digeprek dengan sambal khas Bossku. Gurih & pedas maksimal!</div>
+        <div class="spicy-bar">
+          <span class="chili">🌶️</span><span class="chili">🌶️</span><span class="chili">🌶️</span>
+          <span class="chili">🌶️</span><span class="chili off">🌶️</span>
+        </div>
+        <div class="menu-price">Rp 20.000 <span>/ porsi</span></div>
+      </div>
+    </div>
+
+    <div class="menu-card reveal">
+      <div class="menu-emoji">🦑</div>
+      <div class="menu-body">
+        <div class="menu-name">Cumi Geprek</div>
+        <div class="menu-desc">Cumi lembut berbalut tepung crispy, digeprek hingga meresap sambal nikmat. Pecinta seafood wajib coba!</div>
+        <div class="spicy-bar">
+          <span class="chili">🌶️</span><span class="chili">🌶️</span><span class="chili">🌶️</span>
+          <span class="chili">🌶️</span><span class="chili off">🌶️</span>
+        </div>
+        <div class="menu-price">Rp 25.000 <span>/ porsi</span></div>
+      </div>
+    </div>
+
+    <div class="menu-card reveal">
+      <div class="menu-emoji">🥚</div>
+      <div class="menu-body">
+        <div class="menu-name">Telur Geprek</div>
+        <div class="menu-desc">Pilihan hemat tapi tetap nendang! Telur goreng crispy dipadu sambal geprek khas Bossku.</div>
+        <div class="spicy-bar">
+          <span class="chili">🌶️</span><span class="chili">🌶️</span>
+          <span class="chili off">🌶️</span><span class="chili off">🌶️</span><span class="chili off">🌶️</span>
+        </div>
+        <div class="menu-price">Rp 8.000 <span>/ porsi</span></div>
+      </div>
+    </div>
+
+    <div class="menu-card reveal">
+      <div class="menu-emoji">🍜</div>
+      <div class="menu-body">
+        <div class="menu-name">Mie Geprek</div>
+        <div class="menu-desc">Mie goreng lezat disiram sambal geprek. Cocok jadi teman makan atau pengganti nasi.</div>
+        <div class="spicy-bar">
+          <span class="chili">🌶️</span><span class="chili">🌶️</span><span class="chili">🌶️</span>
+          <span class="chili off">🌶️</span><span class="chili off">🌶️</span>
+        </div>
+        <div class="menu-price">Rp 8.000 <span>/ porsi</span></div>
+      </div>
+    </div>
+
+    <div class="menu-card reveal">
+      <div class="menu-emoji">
+        🍗🍗
+        <div class="menu-badge">🔥 PROMO</div>
+      </div>
+      <div class="menu-body">
+        <div class="menu-name">Paket Komplit</div>
+        <div class="menu-desc">Ayam Geprek + Nasi + Indomie Goreng + Es Teh. Paket makan siang paling worth it se-Kendari!</div>
+        <div class="spicy-bar">
+          <span class="chili">🌶️</span><span class="chili">🌶️</span><span class="chili">🌶️</span>
+          <span class="chili off">🌶️</span><span class="chili off">🌶️</span>
+        </div>
+        <div class="menu-price">Rp 24.000 <span>/ paket</span></div>
+      </div>
+    </div>
+
+    <div class="menu-card reveal">
+      <div class="menu-emoji">🌿</div>
+      <div class="menu-body">
+        <div class="menu-name">Kangkung Tumis</div>
+        <div class="menu-desc">Kangkung segar ditumis dengan bumbu pilihan. Pelengkap sempurna untuk hidangan geprek kamu.</div>
+        <div class="spicy-bar">
+          <span class="chili">🌶️</span>
+          <span class="chili off">🌶️</span><span class="chili off">🌶️</span><span class="chili off">🌶️</span><span class="chili off">🌶️</span>
+        </div>
+        <div class="menu-price">Rp 8.000 <span>/ porsi</span></div>
+      </div>
+    </div>
+
+    <div class="menu-card reveal">
+      <div class="menu-emoji">
+        🐔
+        <div class="menu-badge">👑 SPESIAL</div>
+      </div>
+      <div class="menu-body">
+        <div class="menu-name">Paket Ayam Utuh</div>
+        <div class="menu-desc">Ayam utuh + 3 Nasi + 3 Es Teh + 4 Sambal Geprek. Cocok buat makan bareng keluarga atau teman!</div>
+        <div class="spicy-bar">
+          <span class="chili">🌶️</span><span class="chili">🌶️</span><span class="chili">🌶️</span>
+          <span class="chili">🌶️</span><span class="chili">🌶️</span>
+        </div>
+        <div class="menu-price">Rp 56.000 <span>/ paket</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about">
+  <h2 class="section-title reveal" style="color:var(--white)">KENAPA <span style="color:#FF8888">BOSSKU?</span></h2>
+  <p class="section-sub reveal">Lebih dari sekadar ayam geprek biasa</p>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <h3>Bossnya Ayam Geprek di Kendari 🏆</h3>
+      <p>Ayam Geprek Bossku hadir sejak awal dengan misi sederhana: menyajikan ayam geprek dengan kualitas terbaik, porsi tidak dikurangi, dan harga yang bersahabat untuk semua kalangan.</p>
+      <p>Dengan lebih dari 10 outlet yang tersebar di seluruh Kota Kendari, kami terus berinovasi dengan menu-menu baru sambil tetap mempertahankan cita rasa otentik yang sudah dicintai ribuan pelanggan setia Bossku.</p>
+      <p>Setiap porsi ayam ditimbang dengan standar ketat — tidak boleh kurang! Karena kepuasan Bossku adalah prioritas kami.</p>
+    </div>
+    <div class="about-cards reveal">
+      <div class="about-card">
+        <div class="icon">⚖️</div>
+        <h4>Porsi Terjamin</h4>
+        <p>Setiap ayam ditimbang — dijamin tidak dikurangi!</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🕐</div>
+        <h4>Buka 24 Jam</h4>
+        <p>Mau makan jam berapa pun, Bossku selalu siap!</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🌶️</div>
+        <h4>Level Pedas</h4>
+        <p>Dari level 1 sampai 10, sesuaikan dengan selera!</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🚀</div>
+        <h4>10+ Outlet</h4>
+        <p>Tersebar di seluruh penjuru Kota Kendari.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTLETS -->
+<section id="outlets">
+  <h2 class="section-title reveal">LOKASI <span>OUTLET</span></h2>
+  <p class="section-sub reveal">Temukan kami di seluruh Kota Kendari</p>
+  <div class="outlets-grid">
+    <div class="outlet-card reveal">
+      <div class="outlet-num">01</div>
+      <div class="outlet-name">Andonohu (Pusat)</div>
+      <div class="outlet-info">📍 Jl. Bunggasi, Andonohu</div>
+    </div>
+    <div class="outlet-card reveal">
+      <div class="outlet-num">02</div>
+      <div class="outlet-name">Mandonga</div>
+      <div class="outlet-info">📍 Jl. R. Suprapto, Mandonga</div>
+    </div>
+    <div class="outlet-card reveal">
+      <div class="outlet-num">03</div>
+      <div class="outlet-name">Wua-Wua</div>
+      <div class="outlet-info">📍 Kawasan Wua-Wua, Kendari</div>
+    </div>
+    <div class="outlet-card reveal">
+      <div class="outlet-num">04</div>
+      <div class="outlet-name">Lepo-Lepo / Bandara</div>
+      <div class="outlet-info">📍 Jl. Poros Bandara Haluoleo, Baruga</div>
+    </div>
+    <div class="outlet-card reveal">
+      <div class="outlet-num">05</div>
+      <div class="outlet-name">Edi Sabara</div>
+      <div class="outlet-info">📍 Jl. Edi Sabara No. 1A (Samping Hotel Zahra)</div>
+    </div>
+    <div class="outlet-card reveal">
+      <div class="outlet-num">06</div>
+      <div class="outlet-name">Punggolaka</div>
+      <div class="outlet-info">📍 Kawasan Punggolaka, Kendari</div>
+    </div>
+    <div class="outlet-card reveal">
+      <div class="outlet-num">07</div>
+      <div class="outlet-name">By Pass</div>
+      <div class="outlet-info">📍 Jl. By Pass, Kendari</div>
+    </div>
+    <div class="outlet-card reveal">
+      <div class="outlet-num">08</div>
+      <div class="outlet-name">Kota Lama</div>
+      <div class="outlet-info">📍 Kawasan Kota Lama, Kendari</div>
+    </div>
+    <div class="outlet-card reveal">
+      <div class="outlet-num">09</div>
+      <div class="outlet-name">Depan Mandala Waluya</div>
+      <div class="outlet-info">📍 Jl. Madjied Yoenus, Kadia</div>
+    </div>
+    <div class="outlet-card reveal">
+      <div class="outlet-num">10</div>
+      <div class="outlet-name">Kendari Caddi</div>
+      <div class="outlet-info">📍 Kawasan Kendari Caddi</div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<div id="order">
+  <h2 class="section-title reveal">PESAN <span style="color:#FF8888">SEKARANG!</span></h2>
+  <p class="section-sub reveal">Tersedia di berbagai platform delivery favoritmu</p>
+  <div class="order-apps">
+    <a href="#" class="app-btn reveal">
+      <span class="app-icon">🟢</span> GoFood
+    </a>
+    <a href="#" class="app-btn reveal">
+      <span class="app-icon">🟡</span> GrabFood
+    </a>
+    <a href="#" class="app-btn reveal">
+      <span class="app-icon">🟠</span> ShopeeFood
+    </a>
+    <a href="https://wa.me/6282346166506" target="_blank" class="app-btn reveal">
+      <span class="app-icon">💬</span> WhatsApp
+    </a>
+    <a href="https://www.instagram.com/ayamgeprekbossku.id?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="app-btn reveal">
+      <span class="app-icon">📸</span> Instagram
+    </a>
+  </div>
+  <p style="color:rgba(255,255,255,0.85); margin-top:28px; font-size:1.1rem; font-weight:700;">
+    📞 <a href="tel:082346166506" style="color:#FF8888; text-decoration:none; letter-spacing:1px;">0823-4616-6506</a>
+  </p>
+  <p style="color:rgba(255,255,255,0.7); margin-top:10px; font-size:0.9rem;">
+    Atau follow kami di Instagram: <a href="https://www.instagram.com/ayamgeprekbossku.id?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="color:#FF8888; text-decoration:none; font-weight:700;">@ayamgeprekbossku.id</a>
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Ayam Geprek Bossku</strong> · Kendari, Sulawesi Tenggara</p>
+  <p style="margin-top:8px;">#BossnyaAyamGeprek · Menggeprek 24 JAM‼️</p>
+  <p style="margin-top:12px; font-size:0.8rem;">
+    Instagram: <a href="https://instagram.com/ayamgeprekbossku.id" target="_blank">@ayamgeprekbossku.id</a>
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
